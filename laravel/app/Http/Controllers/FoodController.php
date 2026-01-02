@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Food; 
+use App\Models\Meal; 
+
 
 class FoodController extends Controller
 {
@@ -61,4 +64,21 @@ class FoodController extends Controller
     {
         //
     }
+    public function createTestFood()
+{
+    $food = Food::create([
+        'meal_id' => 1, 
+        'name' => 'Tavuk Göğsü',
+        'calories' => 165,
+        'serving_size' => '100g' 
+    ]);
+    dd("Yeni Besin Oluşturuldu:", $food);
+}
+
+public function listFoods()
+{
+    $foods = Food::all();
+    dd("Tüm Besinler (Adet: " . $foods->count() . "):", $foods);
+}
+
 }

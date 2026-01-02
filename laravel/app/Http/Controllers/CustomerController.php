@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Customer;
+
 
 class CustomerController extends Controller
 {
@@ -11,7 +13,8 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        //
+       $customers = Customer::all();
+        return view('customers.index', compact('customers'));
     }
 
     /**
@@ -19,7 +22,7 @@ class CustomerController extends Controller
      */
     public function create()
     {
-        //
+        return view('customers.create');
     }
 
     /**
@@ -27,15 +30,30 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      
+     
+        Customer::create([
+            'name' => $request->post('name'),
+            'surname' => $request->post('surname'),
+            'gender' => $request->post('gender'),
+            'birthYear' => $request->post('birthYear'),
+        ]);
+
+        
+        return redirect()->route('customers.index');
+       
+
+    // Customer::create($request->post());
     }
+    
 
     /**
      * Display the specified resource.
      */
     public function show(string $id)
     {
-        //
+        $customer = \App\Models\Customer::findOrFail($id);
+    return view('customers.show', compact('customer'));
     }
 
     /**
@@ -43,7 +61,8 @@ class CustomerController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $customer = \App\Models\Customer::findOrFail($id);
+        return view('customers.edit',compact('customer'));
     }
 
     /**
@@ -51,7 +70,8 @@ class CustomerController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+       $customer->update($request->post());
+       return redirect()->route('customers.index');
     }
 
     /**
@@ -59,6 +79,11 @@ class CustomerController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $customer->delete();
+        return redirect()->route('customers.index');
     }
-}
+    
+    
+}    
+    
+

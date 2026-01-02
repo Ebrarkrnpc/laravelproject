@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Meal;
+
 
 class MealController extends Controller
 {
@@ -11,7 +13,7 @@ class MealController extends Controller
      */
     public function index()
     {
-        //
+        return view ('example');
     }
 
     /**
@@ -19,7 +21,22 @@ class MealController extends Controller
      */
     public function create()
     {
-        //
+        $meal1 = Meal::create([
+        'customer_id' => 1, 
+        'name' => 'Grilled Chicken',
+        'total_calories' => 250,
+        'meal_date' => now()->toDateString(), 
+        'meal_time' => now()->toTimeString(),
+    ]);
+
+    $meal2 = Meal::create([
+        'customer_id' => 1, 
+        'name' => 'Vegetable Soup',
+        'total_calories' => 100,
+        'meal_date' => now()->toDateString(), 
+        'meal_time' => now()->toTimeString(),
+    ]);
+        dd('Öğünler başarıyla eklendi:', $meal1, $meal2);
     }
 
     /**

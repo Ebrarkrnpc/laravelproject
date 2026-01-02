@@ -13,11 +13,13 @@ return new class extends Migration
     {
         Schema::create('food', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            
             $table->foreignId('meal_id')->constrained()->onDelete('cascade'); // Meal ilişkisi
             $table->string('name');
             $table->integer('calories');
-            $table->double('serving_size', 8, 2); // Porsiyon büyüklüğü
+            $table->text('major');
+            
+            $table->timestamps();
         });
     }
 

@@ -12,14 +12,16 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('exercises', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
-            $table->foreignId('customer_id')->constrained()->onDelete('cascade'); // Customer ilişkisi
-            $table->foreignId('activity_id')->constrained()->onDelete('cascade'); // Activity ilişkisi
-            $table->integer('duration_minutes');
-            $table->integer('calories_burned');
-            $table->date('exercise_date');
-        });
+        $table->id();
+        $table->foreignId('customer_id')->constrained()->onDelete('cascade'); // Müşteri ilişkisi
+        $table->foreignId('activity_id')->constrained()->onDelete('cascade'); // Aktivite ilişkisi
+        
+        $table->text('name');
+        $table->text('type');
+        $table->text('unit');
+        $table->text('calori');
+        $table->timestamps();
+    });
     }
 
     /**

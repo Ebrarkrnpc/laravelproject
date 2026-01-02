@@ -1,5 +1,4 @@
 <?php
-
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -15,9 +14,10 @@ return new class extends Migration
             $table->id();
             
             $table->string('name');
-            $table->string('email')->unique();
-            $table->string('password');
-            $table->integer('daily_calorie_goal')->default(2000);
+            $table->string('surname')->nullable();
+            $table->string('gender')->nullable();
+            $table->year('birthYear')->nullable();
+            
             $table->timestamps();
         });
     }

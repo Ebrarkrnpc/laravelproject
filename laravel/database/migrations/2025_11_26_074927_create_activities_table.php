@@ -13,10 +13,15 @@ return new class extends Migration
     {
         Schema::create('activities', function (Blueprint $table) {
             $table->id();
+            
+            $table->integer('customer_id');
+
+            $table->integer('exercises_id');
+            $table->text('repetition');
+            $table->text('calori');
+            $table->text('like');
+            $table->texy('duration');
             $table->timestamps();
-            $table->string('name')->unique();
-$table->string('description')->nullable();
-$table->integer('calories_per_hour');
         });
     }
 
